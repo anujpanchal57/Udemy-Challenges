@@ -14,17 +14,21 @@
 # number of segments and how long each one is.
 
 # Using Package IP
-from IPy import IP
+# from IPy import IP
 
-ipAddr = input("Enter your IP Address: ")
+input_prompt = "Enter your IP Address. An IP address consists of 4 numbers, " \
+               "separated from each other with a full stop: "
+ipAddr = input(input_prompt)
+if ipAddr[-1] != '.':
+    ipAddr += '.'
 
 # For checking Invalid IP Addresses
-IP(ipAddr)
+# IP(ipAddr)
 
 # Declared Initial Variables
 seg = 1
 seg_length = 0
-char = ""
+# char = ""
 
 # If any char in the ipAddr
 for char in ipAddr:
@@ -36,5 +40,5 @@ for char in ipAddr:
         seg_length += 1
 
 # If the last word is a . , then print the following
-if char != ".":
-    print("Seg {} has {} chars".format(seg, seg_length))
+# if char != ".":
+#     print("Seg {} has {} chars".format(seg, seg_length))
