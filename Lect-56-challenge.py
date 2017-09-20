@@ -30,15 +30,15 @@ vocab = {"QUIT": "Q",
          "EAST": "E",
          "WEST": "W"}
 
-# # Not a part of the Challenge, just for the sake of understanding
-# # It splits the location into separate words
-# print(locations[0].split())
+# Not a part of the Challenge, just for the sake of understanding
+# It splits the location into separate words
+print(locations[0].split())
 
-# # Splits by a comma
-# print(locations[1].split(","))
+# Splits by a comma
+print(locations[1].split(","))
 
-# # Splits by a space in between
-# print(' '.join(locations[0].split()))
+# Splits by a space in between
+print(' '.join(locations[0].split()))
 
 
 loc = 1
@@ -67,14 +67,16 @@ while True:
             if word in vocab:
                 direction = vocab[word]
                 break
-#         # If the word is present in dict VOCAB then go ahead
-#         for word in vocab:
-#             # If the word exists in direction, then add the word in direction
-#             # And find the appropriate location
-#             if word in direction:
-#                 # Now, if you type NORTH and hit enter it will match the word from the
-#                 # VOCAB DICT and return the suitable result
-#                 direction = vocab[word]
+        # OR if not the above method this is just the simple code to parse and check the User Input
+        # and evaluate it to match it with respective direction
+        # If the word is present in dict VOCAB then go ahead
+        for word in vocab:
+            # If the word exists in direction, then add the word in direction
+            # And find the appropriate location
+            if word in direction:
+                # Now, if you type NORTH and hit enter it will match the word from the
+                # VOCAB DICT and return the suitable result
+                direction = vocab[word]
 
     if direction in exits[loc]:
         loc = exits[loc][direction]
