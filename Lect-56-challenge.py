@@ -23,22 +23,33 @@ exits = {0: {"Q": 0},
          4: {"N": 1, "W": 2, "Q": 0},
          5: {"W": 2, "S": 1, "Q": 0}}
 
+namedExits = {1: {"2": 2, "3": 3, "5": 5, "4": 4},
+              2: {"5": 5},
+              3: {"1": 1},
+              4: {"1": 1, "2": 2},
+              5: {"2": 2, "1": 1}}
+
 # Created a dictionary
 vocab = {"QUIT": "Q",
          "NORTH": "N",
          "SOUTH": "S",
          "EAST": "E",
-         "WEST": "W"}
+         "WEST": "W",
+         "ROAD": "1",
+         "HILL": "2",
+         "BUILDING": "3",
+         "VALLEY": "4",
+         "FOREST": "5"}
 
-# Not a part of the Challenge, just for the sake of understanding
-# It splits the location into separate words
-print(locations[0].split())
+# # Not a part of the Challenge, just for the sake of understanding
+# # It splits the location into separate words
+# print(locations[0].split())
 
-# Splits by a comma
-print(locations[1].split(","))
+# # Splits by a comma
+# print(locations[1].split(","))
 
-# Splits by a space in between
-print(' '.join(locations[0].split()))
+# # Splits by a space in between
+# print(' '.join(locations[0].split()))
 
 
 loc = 1
@@ -48,6 +59,11 @@ while True:
 
     if loc == 0:
         break
+    else:
+        # We're copying all the locations in the exit dict into the variable allExits
+        allExits = exits[loc].copy()
+        # Now we're updating allExits variable with the dict of namedExits
+        allExits.update(namedExits[loc])
 
     direction = input("Available Exits are " + availableExits + " ").upper()
     print()
@@ -67,18 +83,16 @@ while True:
             if word in vocab:
                 direction = vocab[word]
                 break
-        # OR if not the above method this is just the simple code to parse and check the User Input
-        # and evaluate it to match it with respective direction
-        # If the word is present in dict VOCAB then go ahead
-        for word in vocab:
-            # If the word exists in direction, then add the word in direction
-            # And find the appropriate location
-            if word in direction:
-                # Now, if you type NORTH and hit enter it will match the word from the
-                # VOCAB DICT and return the suitable result
-                direction = vocab[word]
+#         # If the word is present in dict VOCAB then go ahead
+#         for word in vocab:
+#             # If the word exists in direction, then add the word in direction
+#             # And find the appropriate location
+#             if word in direction:
+#                 # Now, if you type NORTH and hit enter it will match the word from the
+#                 # VOCAB DICT and return the suitable result
+#                 direction = vocab[word]
 
-    if direction in exits[loc]:
-        loc = exits[loc][direction]
+    if direction in allExits:
+        loc = allExits[direction]
     else:
         print("You cannot go in that direction")
